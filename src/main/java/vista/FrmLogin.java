@@ -8,6 +8,10 @@ package vista;
  *
  * @author nekom
  */
+import controller.LoginController;
+import model.Usuario;
+import javax.swing.JOptionPane;
+
 public class FrmLogin extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmLogin.class.getName());
@@ -15,8 +19,13 @@ public class FrmLogin extends javax.swing.JFrame {
     /**
      * Creates new form FrmLogin
      */
+    private final LoginController controller;
+    
     public FrmLogin() {
         initComponents();
+        controller = new LoginController();
+        this.setLocationRelativeTo(null); // Centrar ventana
+        this.setTitle("Login - Sistema Óptica");
     }
 
     /**
@@ -28,21 +37,149 @@ public class FrmLogin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        pfcontraseñalogin = new javax.swing.JPasswordField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtusuariologin = new javax.swing.JTextField();
+        btningresarlogin = new javax.swing.JButton();
+        btnsalirlogin = new javax.swing.JButton();
+        lblmensajelogin = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Usuario");
+
+        pfcontraseñalogin.setText("jPasswordField1");
+        pfcontraseñalogin.addActionListener(this::pfcontraseñaloginActionPerformed);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setText("Contraseña");
+
+        txtusuariologin.addActionListener(this::txtusuariologinActionPerformed);
+
+        btningresarlogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btningresarlogin.setText("Ingresar");
+        btningresarlogin.addActionListener(this::btningresarloginActionPerformed);
+
+        btnsalirlogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnsalirlogin.setText("Salir");
+        btnsalirlogin.addActionListener(this::btnsalirloginActionPerformed);
+
+        lblmensajelogin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblmensajelogin.setText("              Mensaje");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel5.setText("Iniciar Sesion");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(pfcontraseñalogin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(133, 133, 133))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblmensajelogin, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(191, 191, 191)
+                .addComponent(jLabel5)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addGap(39, 39, 39)
+                .addComponent(txtusuariologin, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(btningresarlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                .addComponent(btnsalirlogin, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jLabel3)
+                        .addGap(62, 62, 62))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtusuariologin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(33, 33, 33)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(pfcontraseñalogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(72, 72, 72)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btningresarlogin, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
+                    .addComponent(btnsalirlogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(lblmensajelogin, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void pfcontraseñaloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pfcontraseñaloginActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pfcontraseñaloginActionPerformed
+
+    private void txtusuariologinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuariologinActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusuariologinActionPerformed
+
+    private void btnsalirloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirloginActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_btnsalirloginActionPerformed
+
+    private void btningresarloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarloginActionPerformed
+        // TODO add your handling code here:
+        String usuario = txtusuariologin.getText();
+        String contrasena = new String(pfcontraseñalogin.getPassword());
+
+        Usuario user = controller.iniciarSesion(usuario, contrasena);
+        
+         if (usuario.isEmpty() || contrasena.isEmpty()) {
+            lblmensajelogin.setText("Por favor, llene todos los campos.");
+            lblmensajelogin.setForeground(java.awt.Color.RED); // Se pone rojo para que resalte
+            return;
+        }
+
+        if (user != null) {
+            JOptionPane.showMessageDialog(this, "Bienvenido " + user.getUsuario());
+            this.dispose();
+            
+            //Redirigir segun el rol
+            if ("vendedor".equalsIgnoreCase(user.getRol()) || "admin".equalsIgnoreCase(user.getRol())) {
+                new FrmMenuVendedor().setVisible(true);
+            } else {
+                new FrmMenuCliente().setVisible(true);
+            }
+        } else {
+            lblmensajelogin.setText("Usuario o contraseña incorrectos.");
+            JOptionPane.showMessageDialog(this, "Credenciales inválidas", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btningresarloginActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +207,14 @@ public class FrmLogin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btningresarlogin;
+    private javax.swing.JButton btnsalirlogin;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblmensajelogin;
+    private javax.swing.JPasswordField pfcontraseñalogin;
+    private javax.swing.JTextField txtusuariologin;
     // End of variables declaration//GEN-END:variables
 }

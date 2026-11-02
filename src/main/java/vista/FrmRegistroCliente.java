@@ -8,6 +8,10 @@ package vista;
  *
  * @author nekom
  */
+import controller.ClienteController;
+import model.Cliente;
+import javax.swing.JOptionPane;
+
 public class FrmRegistroCliente extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmRegistroCliente.class.getName());
@@ -15,8 +19,12 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
     /**
      * Creates new form FrmRegistroCliente
      */
+    private final ClienteController controller;
+    
     public FrmRegistroCliente() {
         initComponents();
+        controller = new ClienteController();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -28,21 +36,170 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        txtnombreregistro = new javax.swing.JTextField();
+        txtdniregistro = new javax.swing.JTextField();
+        txttelefonoregistro = new javax.swing.JTextField();
+        txtcorreoregistro = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnguardarregistro = new javax.swing.JButton();
+        btnlimpiarregistro = new javax.swing.JButton();
+        btncancelarregistro = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAlwaysOnTop(true);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Nombre");
+
+        jLabel2.setText("DNI");
+
+        jLabel3.setText("Telefono");
+
+        jLabel4.setText("Correo");
+
+        btnguardarregistro.setText("Guardar");
+        btnguardarregistro.addActionListener(this::btnguardarregistroActionPerformed);
+
+        btnlimpiarregistro.setText("Limpiar");
+        btnlimpiarregistro.addActionListener(this::btnlimpiarregistroActionPerformed);
+
+        btncancelarregistro.setText("Cancelar");
+        btncancelarregistro.addActionListener(this::btncancelarregistroActionPerformed);
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel5.setText("Registro de Clientes");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(126, 126, 126)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(155, 155, 155))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(125, 125, 125)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4)
+                .addGap(145, 145, 145))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnguardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(60, 60, 60)
+                                .addComponent(btnlimpiarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel5)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txttelefonoregistro, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(txtnombreregistro, javax.swing.GroupLayout.Alignment.LEADING))
+                                    .addGap(87, 87, 87)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtdniregistro, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                                        .addComponent(txtcorreoregistro))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(206, 206, 206)
+                        .addComponent(btncancelarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(jLabel5)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnombreregistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdniregistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtcorreoregistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txttelefonoregistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnguardarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnlimpiarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btncancelarregistro, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnguardarregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarregistroActionPerformed
+                                                           
+       try {
+            // 1. Validación: Evitar campos vacíos obligatorios
+            if (txtnombreregistro.getText().trim().isEmpty() || txtdniregistro.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "El nombre y el DNI son obligatorios.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+
+            // 2. Crear el objeto Cliente
+            // Usamos el constructor: (idCliente, idUsuario, nombre, dni, telefono, correo)
+            Cliente c = new Cliente(
+                0, // ID 0 porque es autoincremental en la BD
+                1, // ID de usuario (Andre, según tu base de datos)
+                txtnombreregistro.getText().trim(),
+                txtdniregistro.getText().trim(),
+                txttelefonoregistro.getText().trim(),
+                txtcorreoregistro.getText().trim()
+            );
+
+            // 3. Llamar al controlador
+            String mensaje = controller.registrarCliente(c);
+            JOptionPane.showMessageDialog(this, mensaje);
+            
+            // 4. Si el registro fue exitoso, limpiar los campos
+            // Verificamos si el mensaje contiene palabras clave de éxito
+            if (mensaje.toLowerCase().contains("éxito") || mensaje.toLowerCase().contains("correctamente") || mensaje.toLowerCase().contains("guardado")) {
+                limpiarCampos();
+            }
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }//GEN-LAST:event_btnguardarregistroActionPerformed
+
+    private void btnlimpiarregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarregistroActionPerformed
+        // TODO add your handling code here:
+        limpiarCampos();
+    }//GEN-LAST:event_btnlimpiarregistroActionPerformed
+
+    private void btncancelarregistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncancelarregistroActionPerformed
+                                                              
+        this.dispose(); 
+        new FrmMenuVendedor().setVisible(true);
+    }
+
+    private void limpiarCampos() {
+        txtnombreregistro.setText("");
+        txtdniregistro.setText("");
+        txttelefonoregistro.setText("");
+        txtcorreoregistro.setText("");
+    }//GEN-LAST:event_btncancelarregistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +227,17 @@ public class FrmRegistroCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btncancelarregistro;
+    private javax.swing.JButton btnguardarregistro;
+    private javax.swing.JButton btnlimpiarregistro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JTextField txtcorreoregistro;
+    private javax.swing.JTextField txtdniregistro;
+    private javax.swing.JTextField txtnombreregistro;
+    private javax.swing.JTextField txttelefonoregistro;
     // End of variables declaration//GEN-END:variables
 }

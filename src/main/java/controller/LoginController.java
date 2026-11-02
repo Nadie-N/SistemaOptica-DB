@@ -1,20 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author nekom
- */
-public class LoginController {
+import dao.UsuarioDAO;
+import impl.dao.UsuarioDAOImpl;
+import model.Usuario;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class LoginController {
     
+    private UsuarioDAO usuarioDAO;
+
+    public LoginController() {
+        // Instanciamos la implementación, pero guardamos en la interfaz
+        this.usuarioDAO = new UsuarioDAOImpl();
+    }
+
+    public Usuario iniciarSesion(String usuario, String contrasena) {
+        if (usuario == null || usuario.trim().isEmpty() || 
+            contrasena == null || contrasena.trim().isEmpty()) {
+            return null;
+        }
+        
+        // CORREGIDO: Llamamos a iniciarSesion en lugar de validarLogin
+        return usuarioDAO.iniciarSesion(usuario.trim(), contrasena.trim());
+    }
 }

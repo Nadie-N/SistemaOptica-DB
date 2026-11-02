@@ -17,8 +17,9 @@ public class FrmMenuVendedor extends javax.swing.JFrame {
      */
     public FrmMenuVendedor() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,21 +29,108 @@ public class FrmMenuVendedor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        btninventariovendedor = new javax.swing.JButton();
+        btnventasvendedor = new javax.swing.JButton();
+        btnsalirvendedor = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btnregistrarvendedor = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setText("Menu Principal");
+
+        btninventariovendedor.setText("Inventario");
+        btninventariovendedor.addActionListener(this::btninventariovendedorActionPerformed);
+
+        btnventasvendedor.setText("Ventas");
+        btnventasvendedor.addActionListener(this::btnventasvendedorActionPerformed);
+
+        btnsalirvendedor.setText("Salir");
+        btnsalirvendedor.addActionListener(this::btnsalirvendedorActionPerformed);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Ver inventario");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Ver ventas");
+
+        btnregistrarvendedor.setText("Registrar Cliente");
+        btnregistrarvendedor.addActionListener(this::btnregistrarvendedorActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btninventariovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnventasvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(54, 54, 54))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(64, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnregistrarvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(123, 123, 123)
+                        .addComponent(btnsalirvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(125, 125, 125))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(jLabel1)
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btninventariovendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnventasvendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnregistrarvendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+                    .addComponent(btnsalirvendedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnregistrarvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarvendedorActionPerformed
+        // TODO add your handling code here:
+        new FrmRegistroCliente().setVisible(true);
+    }//GEN-LAST:event_btnregistrarvendedorActionPerformed
+
+    private void btninventariovendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btninventariovendedorActionPerformed
+        // TODO add your handling code here:
+        new FrmInventario().setVisible(true);
+    }//GEN-LAST:event_btninventariovendedorActionPerformed
+
+    private void btnventasvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnventasvendedorActionPerformed
+        // TODO add your handling code here:
+        new FrmVentas().setVisible(true);
+    }//GEN-LAST:event_btnventasvendedorActionPerformed
+
+    private void btnsalirvendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsalirvendedorActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new FrmLogin().setVisible(true);
+    }//GEN-LAST:event_btnsalirvendedorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +158,12 @@ public class FrmMenuVendedor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btninventariovendedor;
+    private javax.swing.JButton btnregistrarvendedor;
+    private javax.swing.JButton btnsalirvendedor;
+    private javax.swing.JButton btnventasvendedor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     // End of variables declaration//GEN-END:variables
 }

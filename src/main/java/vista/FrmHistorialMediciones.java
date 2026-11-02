@@ -8,6 +8,10 @@ package vista;
  *
  * @author nekom
  */
+import controller.ClienteController;
+import model.Medicion;
+import javax.swing.table.DefaultTableModel;
+
 public class FrmHistorialMediciones extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(FrmHistorialMediciones.class.getName());
@@ -15,8 +19,63 @@ public class FrmHistorialMediciones extends javax.swing.JFrame {
     /**
      * Creates new form FrmHistorialMediciones
      */
-    public FrmHistorialMediciones() {
+    private final ClienteController controller;
+    private final int idClienteActual;
+    
+    public FrmHistorialMediciones(int idCliente) {
         initComponents();
+        this.idClienteActual = idCliente;
+        this.controller = new ClienteController();
+        this.setLocationRelativeTo(null);
+        configurarTabla();
+        cargarTabla();
+    }
+    
+             private void configurarTabla() {
+        String[] columnas = {"ID", "Fecha", "Esfera", "Cilindro", "Eje", "Adicion", "Observaciones"};
+        DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jtablemediciones.setModel(modelo);
+        
+        // AGREGA ESTAS DOS LÍNEAS NUEVAS:
+        jtablemediciones.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jtablemediciones.getTableHeader().setReorderingAllowed(false);
+    }
+
+        // Método base que carga todo el historial
+    private void cargarTabla() {
+        cargarTablaFiltrada("");
+    }
+
+    // Método que carga el historial aplicando un filtro de fecha
+    private void cargarTablaFiltrada(String filtroFecha) {
+         DefaultTableModel modelo = (DefaultTableModel) jtablemediciones.getModel();
+        modelo.setRowCount(0);
+        
+        // AGREGA ESTA LÍNEA AQUÍ:
+        System.out.println("DEBUG: Buscando mediciones para el cliente ID: " + idClienteActual);
+        
+        boolean hayResultados = false;
+        
+        for (Medicion m : controller.obtenerHistorialMediciones(idClienteActual)) {
+            String fechaString = String.valueOf(m.getFechaMedicion());
+            
+            if (filtroFecha.isEmpty() || fechaString.contains(filtroFecha)) {
+                modelo.addRow(new Object[]{
+                    m.getIdMedicion(), m.getFechaMedicion(), m.getEsfera(),
+                    m.getCilindro(), m.getEje(), m.getAdicion(), m.getObservaciones()
+                });
+                hayResultados = true;
+            }
+        }
+        
+        if (!filtroFecha.isEmpty() && !hayResultados) {
+            javax.swing.JOptionPane.showMessageDialog(this, "No se encontraron mediciones para la fecha: " + filtroFecha, "Sin resultados", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 
     /**
@@ -28,47 +87,97 @@ public class FrmHistorialMediciones extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtablemediciones = new javax.swing.JTable();
+        txtbuscarmediciones = new javax.swing.JTextField();
+        btncerrarmediciones = new javax.swing.JButton();
+        btnbuscarmediciones = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("Historial de Mediciones ");
+
+        jtablemediciones.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jtablemediciones);
+
+        btncerrarmediciones.setText("Cerrar");
+        btncerrarmediciones.addActionListener(this::btncerrarmedicionesActionPerformed);
+
+        btnbuscarmediciones.setText("Buscar fecha");
+        btnbuscarmediciones.addActionListener(this::btnbuscarmedicionesActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1)
+                        .addGap(177, 177, 177))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(btnbuscarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(txtbuscarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btncerrarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtbuscarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btncerrarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnbuscarmediciones, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btncerrarmedicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncerrarmedicionesActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_btncerrarmedicionesActionPerformed
+
+    private void btnbuscarmedicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarmedicionesActionPerformed
+    String filtro = txtbuscarmediciones.getText().trim();
+        cargarTablaFiltrada(filtro);
+    }//GEN-LAST:event_btnbuscarmedicionesActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new FrmHistorialMediciones().setVisible(true));
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnbuscarmediciones;
+    private javax.swing.JButton btncerrarmediciones;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jtablemediciones;
+    private javax.swing.JTextField txtbuscarmediciones;
     // End of variables declaration//GEN-END:variables
 }

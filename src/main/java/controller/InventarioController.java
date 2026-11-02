@@ -1,20 +1,24 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author nekom
- */
-public class InventarioController {
+import impl.dao.ProductoDAOImpl;
+import model.Producto;
+import java.util.List;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class InventarioController {
     
+    private ProductoDAOImpl productoDAO;
+
+    public InventarioController() {
+        this.productoDAO = new ProductoDAOImpl();
+    }
+
+    // Método unificado para registrar cualquier producto (Aro, Luna o Accesorio)
+    public boolean registrarProducto(Producto p) {
+        return productoDAO.registrar(p);
+    }
+
+    // Método para listar según la pestaña (le pasas "ARO", "LUNA" o "ACCESORIO")
+    public List<Producto> listarPorTipo(String tipo) {
+        return productoDAO.listarPorTipo(tipo);
+    }
 }

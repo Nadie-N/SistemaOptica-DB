@@ -16,6 +16,7 @@ public class Venta {
     private int idCliente;
     private int idVendedor;
     private int idMedicion;
+    private int idAro;
     private Date fechaVenta;
     private double subtotal;
     private double impuesto;
@@ -26,12 +27,13 @@ public class Venta {
     }
     
     public Venta(int idVenta, int idCliente, int idVendedor,
-                int idMedicion, Date fechaVenta, double subtotal,
+                int idMedicion, int idAro, Date fechaVenta, double subtotal,
                 double impuesto, double total){
         this.idVenta = idVenta;
         this.idCliente = idCliente;
         this.idVendedor = idVendedor;
         this.idMedicion = idMedicion;
+        this.idAro = idAro;
         this.fechaVenta = fechaVenta;
         this.subtotal = subtotal;
         this.impuesto = impuesto;
@@ -69,7 +71,17 @@ public class Venta {
     public void setIdMedicion(int idMedicion){
         this.idMedicion = idMedicion;
     }
+
+    // --- ESTOS ERAN LOS QUE FALTABAN ---
+    public int getIdAro(){
+        return idAro;
+    }
     
+    public void setIdAro(int idAro){
+        this.idAro = idAro;
+    }
+    // -----------------------------------
+
     public Date getFechaVenta(){
         return fechaVenta;
     }

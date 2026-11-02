@@ -46,7 +46,8 @@ public class DetalleVenta {
        this.idVenta = idVenta;
    }
    
-   public int getIdProductos(){
+   // CORRECCIÓN AQUÍ: Se cambió getIdProductos() a getIdProducto() (singular)
+   public int getIdProducto(){
        return idProducto;
    }
    
@@ -77,14 +78,4 @@ public class DetalleVenta {
    public void setSubtotal(double subtotal){
        this.subtotal = subtotal;
    }
-   
-    
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
-    
 }

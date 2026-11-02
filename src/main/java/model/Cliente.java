@@ -41,6 +41,10 @@ public class Cliente {
           return idUsuario;
       }
       
+      public void setIdUsuario(int idUsuario){
+          this.idUsuario = idUsuario;
+      }
+      
       public String getNombre(){
           return nombre;
       }
